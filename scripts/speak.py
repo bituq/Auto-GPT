@@ -9,7 +9,7 @@ from threading import Lock
 
 
 # TODO: Nicer names for these ids
-voices = ["ErXwobaYiN019PkySvjV", "EXAVITQu4vr4xnSDxMaL"]
+voices = ["kVPvrPissHvLEgTIaF0d", "PEHOirC9DjQMst4NvPpX"]
 
 tts_headers = {
     "Content-Type": "application/json",
@@ -21,7 +21,7 @@ mutex_lock = Lock() # Ensure only one sound is played at a time
 def eleven_labs_speech(text, voice_index=0):
     tts_url = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}".format(
         voice_id=voices[voice_index])
-    formatted_message = {"text": text, "voice_settings": {"stability": 0.05, "similarity_boost": 0.8}}
+    formatted_message = {"text": text, "voice_settings": {"stability": 0.1, "similarity_boost": 0.8}}
     response = requests.post(
         tts_url, headers=tts_headers, json=formatted_message)
 
@@ -49,7 +49,7 @@ def say_text(text, voice_index=0):
         if not cfg.elevenlabs_api_key:
             gtts_speech(text)
         else:
-            success = eleven_labs_speech(text)
+            success = eleven_labs_speech(text, voice_index)
             if not success:
                 gtts_speech(text)
 
