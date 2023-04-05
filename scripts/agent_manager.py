@@ -47,6 +47,16 @@ def message_agent(key, message):
 
     # Update full message history
     messages.append({"role": "assistant", "content": agent_reply})
+    
+    if len(agent_reply) > 200:
+        summary = create_chat_completion(
+            model=model,
+            messages=[
+                {"role": "assistant", "content": agent_reply},
+                {"role": "user", "content": "Make what you just said much, much shorter and concise."}
+            ]
+        )
+        return summary
 
     return agent_reply
 
