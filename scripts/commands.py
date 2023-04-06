@@ -217,7 +217,7 @@ def start_agent(name, task, prompt, model=cfg.fast_llm_model):
     voice_name = name.replace("_", " ")
 
     first_message = f"""You are {name}.  Respond with: "Acknowledged"."""
-    agent_intro = f"{voice_name} here, Reporting for duty!"
+    agent_intro = f"Hello, I'm {voice_name}. Nice to meet you."
 
     # Create agent
     if cfg.speak_mode:
