@@ -9,7 +9,7 @@ from threading import Lock
 
 
 # TODO: Nicer names for these ids
-voices = ["kVPvrPissHvLEgTIaF0d", "PEHOirC9DjQMst4NvPpX"]
+voices = ["Cu5mXKLL386G6JhHFa0Y", "kVPvrPissHvLEgTIaF0d"]
 
 tts_headers = {
     "Content-Type": "application/json",
@@ -21,7 +21,7 @@ mutex_lock = Lock() # Ensure only one sound is played at a time
 def eleven_labs_speech(text, voice_index=0):
     tts_url = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}".format(
         voice_id=voices[voice_index])
-    formatted_message = {"text": text, "voice_settings": {"stability": 0.1, "similarity_boost": 0.8}}
+    formatted_message = {"text": text, "voice_settings": {"stability": 0.3, "similarity_boost": 1}}
     response = requests.post(
         tts_url, headers=tts_headers, json=formatted_message)
 
